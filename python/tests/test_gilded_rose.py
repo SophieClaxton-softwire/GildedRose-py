@@ -150,34 +150,34 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(50, gilded_rose.items[0].quality)
 
     def test_conjured_one_day_update_within_sell_in_date(self):
-        item = Item("Conjured", 10, 10)
+        item = Item("Conjured Mana Cake", 10, 10)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
-        self.assertEqual("Conjured", gilded_rose.items[0].name)
+        self.assertEqual("Conjured Mana Cake", gilded_rose.items[0].name)
         self.assertEqual(9, gilded_rose.items[0].sell_in)
         self.assertEqual(8, gilded_rose.items[0].quality)
 
     def test_conjured_one_day_update_after_sell_in_date(self):
-        item = Item("Conjured", -10, 10)
+        item = Item("Conjured Mana Cake", -10, 10)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
-        self.assertEqual("Conjured", gilded_rose.items[0].name)
+        self.assertEqual("Conjured Mana Cake", gilded_rose.items[0].name)
         self.assertEqual(-11, gilded_rose.items[0].sell_in)
         self.assertEqual(6, gilded_rose.items[0].quality)
 
     def test_conjured_quality_never_negative_within_sell_in_date(self):
-        item = Item("Conjured", 10, 0)
+        item = Item("Conjured Mana Cake", 10, 0)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
-        self.assertEqual("Conjured", gilded_rose.items[0].name)
+        self.assertEqual("Conjured Mana Cake", gilded_rose.items[0].name)
         self.assertEqual(9, gilded_rose.items[0].sell_in)
         self.assertEqual(0, gilded_rose.items[0].quality)
 
     def test_conjured_quality_never_negative_after_sell_in_date(self):
-        item = Item("Conjured", -10, 0)
+        item = Item("Conjured Mana Cake", -10, 0)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
-        self.assertEqual("Conjured", gilded_rose.items[0].name)
+        self.assertEqual("Conjured Mana Cake", gilded_rose.items[0].name)
         self.assertEqual(-11, gilded_rose.items[0].sell_in)
         self.assertEqual(0, gilded_rose.items[0].quality)
 
