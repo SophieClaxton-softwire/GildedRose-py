@@ -23,12 +23,12 @@ class GildedRoseTest(unittest.TestCase):
         ("quality_min_0_on_sell_in_date", 0, 0, 0),
         ("quality_min_0_after_sell_in_date", -10, 0, 0)
     ])
-    def test_general_item(self, name, initial_sell_in, initial_quality, expected_quality):
-        item = Item("item1", initial_sell_in, initial_quality)
+    def test_general_item(self, name, sell_in, initial_quality, expected_quality):
+        item = Item("item1", sell_in, initial_quality)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
         self.assertEqual("item1", gilded_rose.items[0].name)
-        self.assertEqual(initial_sell_in - 1, gilded_rose.items[0].sell_in)
+        self.assertEqual(sell_in - 1, gilded_rose.items[0].sell_in)
         self.assertEqual(expected_quality, gilded_rose.items[0].quality)
 
 
@@ -40,12 +40,12 @@ class GildedRoseTest(unittest.TestCase):
         ("quality_max_50_on_sell_in_date", 0, 49, 50),
         ("quality_max_50_after_sell_in_date", -10, 49, 50)
     ])
-    def test_brie(self, name, initial_sell_in, initial_quality, expected_quality):
-        item = Item("Aged Brie", initial_sell_in, initial_quality)
+    def test_brie(self, name, sell_in, initial_quality, expected_quality):
+        item = Item("Aged Brie", sell_in, initial_quality)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
         self.assertEqual("Aged Brie", gilded_rose.items[0].name)
-        self.assertEqual(initial_sell_in - 1, gilded_rose.items[0].sell_in)
+        self.assertEqual(sell_in - 1, gilded_rose.items[0].sell_in)
         self.assertEqual(expected_quality, gilded_rose.items[0].quality)
 
     
@@ -75,12 +75,12 @@ class GildedRoseTest(unittest.TestCase):
         ("quality_max_50_within_10_of_sell_in_date", 10, 49, 50),
         ("quality_max_50_within_5_of_sell_in_date", 5, 48, 50),
     ])
-    def test_backstage_passes(self, name, initial_sell_in, initial_quality, expected_quality):
-        item = Item("Backstage passes to a TAFKAL80ETC concert", initial_sell_in, initial_quality)
+    def test_backstage_passes(self, name, sell_in, initial_quality, expected_quality):
+        item = Item("Backstage passes to a TAFKAL80ETC concert", sell_in, initial_quality)
         gilded_rose = GildedRose([item])
         gilded_rose.update_quality()
         self.assertEqual("Backstage passes to a TAFKAL80ETC concert", gilded_rose.items[0].name)
-        self.assertEqual(initial_sell_in - 1, gilded_rose.items[0].sell_in)
+        self.assertEqual(sell_in - 1, gilded_rose.items[0].sell_in)
         self.assertEqual(expected_quality, gilded_rose.items[0].quality)
 
     
