@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+def starts_with(string, phrase):
+    return string.find(phrase) == 0
+
 class GildedRose(object):
 
     def __init__(self, items):
@@ -9,33 +12,32 @@ class GildedRose(object):
         for item in self.items:
             base_quality_change = (1 if item.sell_in > 0 else 2)
 
-            match item.name:
-                case "Aged Brie":
-                    item.quality = min(50, item.quality + base_quality_change)
+            if item.name == "Aged Brie":
+                item.quality = min(50, item.quality + base_quality_change)
 
-                case "Backstage passes to a TAFKAL80ETC concert":
-                    if item.sell_in > 10:
-                        item.quality = min(50, item.quality + 1)
+            elif starts_with(item.name, "Backstage passes"):
+                if item.sell_in > 10:
+                    item.quality = min(50, item.quality + 1)
 
-                    elif item.sell_in > 5:
-                        item.quality = min(50, item.quality + 2)
+                elif item.sell_in > 5:
+                    item.quality = min(50, item.quality + 2)
 
-                    elif item.sell_in > 0:
-                        item.quality = min(50, item.quality + 3)
+                elif item.sell_in > 0:
+                    item.quality = min(50, item.quality + 3)
 
-                    else:
-                        item.quality = 0
+                else:
+                    item.quality = 0
 
-                case "Sulfuras, Hand of Ragnaros":
-                    pass
+            elif starts_with(item.name, "Sulfuras"):
+                pass
 
-                case "Conjured Mana Cake":
-                    item.quality = max(0, item.quality - (2 * base_quality_change))
+            elif starts_with(item.name, "Conjured"):
+                item.quality = max(0, item.quality - (2 * base_quality_change))
 
-                case _:
-                    item.quality = max(0, item.quality - base_quality_change)
+            else:
+                item.quality = max(0, item.quality - base_quality_change)
 
-            if item.name != "Sulfuras, Hand of Ragnaros":
+            if not starts_with(item.name, "Sulfuras"):
                 item.sell_in = item.sell_in - 1
 
 class Item:
