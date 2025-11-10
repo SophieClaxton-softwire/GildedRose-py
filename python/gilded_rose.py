@@ -7,9 +7,6 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
-
             base_quality_change = (1 if item.sell_in > 0 else 2)
 
             match item.name:
@@ -35,6 +32,8 @@ class GildedRose(object):
                 case _:
                     item.quality = max(0, item.quality - base_quality_change)
 
+            if item.name != "Sulfuras, Hand of Ragnaros":
+                item.sell_in = item.sell_in - 1
 
 class Item:
     def __init__(self, name, sell_in, quality):
