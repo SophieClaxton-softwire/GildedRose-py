@@ -29,6 +29,9 @@ class GildedRose(object):
                 case "Sulfuras, Hand of Ragnaros":
                     pass
 
+                case "Conjured Mana Cake":
+                    item.quality = max(0, item.quality - (2 * base_quality_change))
+
                 case _:
                     item.quality = max(0, item.quality - base_quality_change)
 
